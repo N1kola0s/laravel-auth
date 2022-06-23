@@ -26,8 +26,7 @@ Route::middleware('auth')->namespace('Admin')->name('admin.')->prefix('admin')->
     /* Admin dashboard */
     Route::get('/', 'HomeController@index')->name('dashboard');
     /* Admin posts */
-    Route::resource('posts', 'PostController')->parameters([
-        'posts' => 'post:slug']);
+    Route::resource('posts', 'PostController');
 });
 
 
