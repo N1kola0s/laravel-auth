@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -15,8 +17,9 @@ class PostController extends Controller
      */
     public function index()
     {   
-        $posts= Post::all();
-        dd($posts);
+        /* $posts= Post::all(); */
+        $posts = Post::orderByDesc('id')->get();
+       /*  dd($posts); */
         return view ('admin.posts.index', compact('posts'));
     }
 
@@ -27,18 +30,32 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\PostRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        /* dd($request->all()); */
+
+        //validiamo i dati
+        $val_data = $request->validated();
+
+        //Generiamo lo slug
+        $slug = Str::slug($request->title,'-');
+        /* dd($slug); */
+        $val_data['slug'] = $slug;
+
+        //Creiamo la risorsa (resource)
+        Post::create($val_data);
+
+        //rindirizziamo alla rotta get (get route)
+        return redirect()->route('admin.posts.index')->with('message', 'Post creato con successo');
     }
 
     /**
@@ -49,7 +66,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -60,19 +77,32 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\PostRequest  $request
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        dd($request->all());
+
+        //validazione dati
+        /* $val_data=$request->validated();
+        dd($val_data); */
+
+        /* dd($slug); */
+    
+
+        //aggiornamento della risorsa
+       
+
+        // reindirizzamento alla rotta di tipo get
+       
     }
 
     /**
