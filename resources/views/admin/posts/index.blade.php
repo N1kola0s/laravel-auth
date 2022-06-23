@@ -60,11 +60,11 @@
 
                 <td class="d-flex flex-column justify-content-center align-items-center" >
 
-                    <a class="btn btn-primary text-white btn-sm w-100" href="{{route('admin.posts.show', $post->id)}}" >
+                    <a class="btn btn-primary text-white btn-sm w-100" href="{{route('admin.posts.show', $post->slug)}}" >
                         Visualizza
                     </a>
 
-                    <a class="btn btn-secondary text-white btn-sm w-100 my-2" href="{{route('admin.posts.edit', $post->id)}}" >
+                    <a class="btn btn-secondary text-white btn-sm w-100 my-2" href="{{route('admin.posts.edit', $post->slug)}}" >
                         Edita
                     </a>
 
