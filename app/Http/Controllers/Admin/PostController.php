@@ -89,20 +89,25 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        dd($request->all());
+        /* dd($request->all()); */
 
         //validazione dati
-        /* $val_data=$request->validated();
-        dd($val_data); */
+        $val_data=$request->validated();
+        /* dd($val_data);  */
 
+        //generazione dello slug
+
+        $slug = Str::slug($request->title,'-');
         /* dd($slug); */
+        $val_data['slug'] = $slug;
     
 
         //aggiornamento della risorsa
        
+        $post->update($val_data);
 
         // reindirizzamento alla rotta di tipo get
-       
+        return redirect()->route('admin.posts.index')->with('message', '$post->title aggiornato con successo');
     }
 
     /**
