@@ -55,7 +55,7 @@ class PostController extends Controller
         Post::create($val_data);
 
         //rindirizziamo alla rotta get (get route)
-        return redirect()->route('admin.posts.index')->with('message', 'Post creato con successo');
+        return redirect()->route('admin.posts.index')->with('message', "Post creato con successo");
     }
 
     /**
@@ -107,7 +107,7 @@ class PostController extends Controller
         $post->update($val_data);
 
         // reindirizzamento alla rotta di tipo get
-        return redirect()->route('admin.posts.index')->with('message', '$post->title aggiornato con successo');
+        return redirect()->route('admin.posts.index')->with('message', "$post->title aggiornato con successo");
     }
 
     /**
@@ -119,6 +119,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.posts.index')->with('message', '$post->title rimosso con successo');
+        return redirect()->route('admin.posts.index')->with('message', "$post->title rimosso con successo");
     }
 }

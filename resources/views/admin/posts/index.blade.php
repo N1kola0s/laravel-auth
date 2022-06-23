@@ -69,12 +69,12 @@
                     </a>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger btn-sm w-100"  data-bs-toggle="modal" data-bs-target="#delete-post-{{$post->id}}">
+                    <button type="button" class="btn btn-danger btn-sm w-100"  data-toggle="modal" data-target="#delete-post-{{$post->id}}">
                         Rimuovi
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="delete-post-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{$post->id}}" aria-hidden="true">
+                    <div class="modal" id="delete-post-{{$post->id}}" tabindex="-1" role="dialog" aria-labelledby="modelTitle-{{$post->id}}" >
 
                         <div class="modal-dialog" role="document">
 
@@ -86,7 +86,7 @@
                                         Rimuovi
                                     </h5>
 
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
                                 <div class="modal-body">
@@ -95,12 +95,12 @@
 
                                 <div class="modal-footer">
 
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                         Close
                                     </button>
 
 
-                                    <form action="{{route('admin.posts.destroy', $post->slug)}}" method="post">
+                                    <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
 
                                         @csrf
                                         @method('DELETE')
